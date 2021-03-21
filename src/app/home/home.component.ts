@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { map } from 'rxjs/operators';
 import { Breakpoints, BreakpointState, BreakpointObserver } from '@angular/cdk/layout';
+import { Observable } from 'rxjs';
+import { AppService } from '../service/app.service';
 
 @Component({
   selector: 'app-home',
@@ -8,26 +10,49 @@ import { Breakpoints, BreakpointState, BreakpointObserver } from '@angular/cdk/l
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent {
+
+  cards = [];
+  cardsForHandset = [];
+  cardForWeb = [];
+  isHandset: boolean = false;
   /** Based on the screen size, switch from standard to one column per row */
-  cards = this.breakpointObserver.observe(Breakpoints.Handset).pipe(
+  isHandsetObserver: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset).pipe(
     map(({ matches }) => {
       if (matches) {
-        return [
-          { title: 'Card 2', cols: 2, rows: 1 },
-          { title: 'Card 3', cols: 2, rows: 1 },
-          { title: 'Card 1', cols: 2, rows: 1 },
-          { title: 'Card 4', cols: 2, rows: 1 }
-        ];
+        return true;
       }
 
-      return [
-        { title: 'Card 1', cols: 2, rows: 1 },
-        { title: 'Card 2', cols: 1, rows: 1 },
-        { title: 'Card 3', cols: 1, rows: 2 },
-        { title: 'Card 4', cols: 1, rows: 1 }
-      ];
+      return false;
     })
   );
 
-  constructor(private breakpointObserver: BreakpointObserver) {}
+  constructor(private breakpointObserver: BreakpointObserver,
+             public appService: AppService) {}
+
+  ngOnInit(){
+    this.isHandsetObserver.subscribe(currentObserverValue => {
+      this.isHandset = currentObserverValue;
+      this.loadCards();
+    });
+    this.appService.getDeals().subscribe(
+      response => {
+        this.cardsForHandset = response.handsetCards;
+        this.cardForWeb = response.webCards;
+        this.loadCards();
+       },
+       error => {
+         alert('There was an error in receiving data from server. Please try again later');
+       }
+    )
+
+  }
+
+  loadCards() {
+    this.cards = this.isHandset ? this.cardsForHandset: this.cardForWeb;
+  }
+
+  getImage(imageName: string): string {
+    return 'url(' + 'http://localhost:3000/images/' + imageName + '.jpg' + ')';
+  }
+
 }
