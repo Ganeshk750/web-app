@@ -18,13 +18,15 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { HomeComponent } from './home/home.component';
 import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule } from '@angular/common/http';
+import { NotifireComponent } from './notifire/notifire.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     NavComponent,
-    HomeComponent
+    HomeComponent,
+    NotifireComponent
   ],
   imports: [
     BrowserModule,
