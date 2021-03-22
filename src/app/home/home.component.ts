@@ -3,6 +3,7 @@ import { map } from 'rxjs/operators';
 import { Breakpoints, BreakpointState, BreakpointObserver } from '@angular/cdk/layout';
 import { Observable } from 'rxjs';
 import { AppService } from '../service/app.service';
+import { NotifireService } from '../service/notifire.service';
 
 @Component({
   selector: 'app-home',
@@ -27,7 +28,8 @@ export class HomeComponent {
   );
 
   constructor(private breakpointObserver: BreakpointObserver,
-             public appService: AppService) {}
+              public appService: AppService,
+              private notifireService: NotifireService) {}
 
   ngOnInit(){
     this.isHandsetObserver.subscribe(currentObserverValue => {
@@ -41,8 +43,9 @@ export class HomeComponent {
         this.loadCards();
        },
        error => {
-         alert('There was an error in receiving data from server. Please try again later');
-       }
+         //alert('There was an error in receiving data from server. Please try again later');
+         this.notifireService.showNotification('There was an error in receiving data from server!', 'OK')
+        }
     )
 
   }
