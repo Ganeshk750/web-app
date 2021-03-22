@@ -2,3 +2,10 @@
 
 html, body { height: 100%; }
 body { margin: 0; font-family: 'Roboto', sans-serif; }
+
+
+/* For Notifire message */
+.error.mat-snack-bar-container {
+    background-color: #cc0000;
+    color: white;
+}

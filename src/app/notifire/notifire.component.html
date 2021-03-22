@@ -3,8 +3,8 @@
   Error
 </div>
 <div>
-  This is notification message
+ {{data.message}}
 </div>
 <div>
-  <button mat-flat-button>Button Text</button>
+  <button mat-flat-button (click)="snakBarRef.dismiss()">{{data.buttonText}}</button>
 </div>

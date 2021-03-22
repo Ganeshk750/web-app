@@ -12,9 +12,14 @@ export class NotifireService {
 
   showNotification(displayMessage: string, buttonText: string){
     this.snakBar.openFromComponent(NotifireComponent, {
+      data: {
+        message: displayMessage,
+        buttonText: buttonText
+      },
       duration: 5000,
       horizontalPosition: 'center',
-      verticalPosition: 'bottom'
+      verticalPosition: 'bottom',
+      panelClass: 'error'
     });
   }
 }
