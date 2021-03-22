@@ -16,6 +16,7 @@ export class HomeComponent {
   cardsForHandset = [];
   cardForWeb = [];
   isHandset: boolean = false;
+
   /** Based on the screen size, switch from standard to one column per row */
   isHandsetObserver: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset).pipe(
     map(({ matches }) => {
@@ -28,10 +29,10 @@ export class HomeComponent {
   );
 
   constructor(private breakpointObserver: BreakpointObserver,
-              public appService: AppService,
-              private notifireService: NotifireService) {}
+    public appService: AppService,
+    private notifireService: NotifireService) { }
 
-  ngOnInit(){
+  ngOnInit() {
     this.isHandsetObserver.subscribe(currentObserverValue => {
       this.isHandset = currentObserverValue;
       this.loadCards();
@@ -42,17 +43,17 @@ export class HomeComponent {
         this.cardForWeb = response.webCards;
         this.loadCards();
         this.notifireService.showNotification('Today deals loaded successfully. Click on any deal!', 'OK', 'success');
-       },
-       error => {
-         //alert('There was an error in receiving data from server. Please try again later');
-         this.notifireService.showNotification('There was an error in receiving data from server!', 'OK', 'error');
-        }
+      },
+      error => {
+        // alert('There was an error in receiving data from server. Please try again later');
+        this.notifireService.showNotification('There was an error in receiving data from server!', 'OK', 'error');
+      }
     )
 
   }
 
   loadCards() {
-    this.cards = this.isHandset ? this.cardsForHandset: this.cardForWeb;
+    this.cards = this.isHandset ? this.cardsForHandset : this.cardForWeb;
   }
 
   getImage(imageName: string): string {

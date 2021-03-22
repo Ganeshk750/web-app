@@ -6,19 +6,21 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatButtonModule } from '@angular/material/button';
 import { NavComponent } from './nav/nav.component';
 import { LayoutModule } from '@angular/cdk/layout';
-import { 
-  MatToolbarModule, 
-  MatSidenavModule, 
-  MatIconModule, 
-  MatListModule, 
-  MatGridListModule, 
-  MatCardModule, 
-  MatMenuModule } from '@angular/material';
+import {
+  MatToolbarModule,
+  MatSidenavModule,
+  MatIconModule,
+  MatListModule,
+  MatGridListModule,
+  MatCardModule,
+  MatMenuModule
+} from '@angular/material';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { HomeComponent } from './home/home.component';
 import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule } from '@angular/common/http';
 import { NotifireComponent } from './notifire/notifire.component';
+
 
 
 @NgModule({
@@ -44,6 +46,7 @@ import { NotifireComponent } from './notifire/notifire.component';
     MatMenuModule,
     MatSnackBarModule
   ],
+  entryComponents:[NotifireComponent],
   providers: [],
   bootstrap: [AppComponent]
 })

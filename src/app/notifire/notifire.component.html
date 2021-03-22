@@ -1,10 +1,11 @@
-
 <div>
-  {{data.type | titelcase}}
+  {{ data.type | titlecase }}
 </div>
-<div>
- {{data.message}}
+<div class="content-style">
+  {{ data.message }}
 </div>
-<div>
-  <button mat-flat-button (click)="snakBarRef.dismiss()">{{data.buttonText}}</button>
+<div style="text-align: center">
+  <button mat-flat-button (click)="snakBarRef.dismiss()">
+    {{ data.buttonText }}
+  </button>
 </div>
