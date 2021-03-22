@@ -41,10 +41,11 @@ export class HomeComponent {
         this.cardsForHandset = response.handsetCards;
         this.cardForWeb = response.webCards;
         this.loadCards();
+        this.notifireService.showNotification('Today deals loaded successfully. Click on any deal!', 'OK', 'success');
        },
        error => {
          //alert('There was an error in receiving data from server. Please try again later');
-         this.notifireService.showNotification('There was an error in receiving data from server!', 'OK')
+         this.notifireService.showNotification('There was an error in receiving data from server!', 'OK', 'error');
         }
     )
 
