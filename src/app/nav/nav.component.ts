@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { BreakpointObserver, Breakpoints, BreakpointState } from '@angular/cdk/layout';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { LoaderService } from '../loader/loader.service';
 
 @Component({
   selector: 'app-nav',
@@ -17,7 +18,8 @@ export class NavComponent implements OnInit {
       map(result => result.matches)
     );
 
-  constructor(private breakpointObserver: BreakpointObserver) { }
+  constructor(private breakpointObserver: BreakpointObserver,
+              public loaderService: LoaderService) { }
 
 
   ngOnInit() {
