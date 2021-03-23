@@ -18,6 +18,7 @@ import {
 } from '@angular/material';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { HomeComponent } from './home/home.component';
 import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule } from '@angular/common/http';
@@ -48,7 +49,8 @@ import { NotifireComponent } from './notifire/notifire.component';
     MatCardModule,
     MatMenuModule,
     MatSnackBarModule,
-    MatSlideToggleModule
+    MatSlideToggleModule,
+    MatProgressBarModule
   ],
   entryComponents:[NotifireComponent],
   providers: [],
